@@ -1,9 +1,9 @@
-# Sample Program
+# <ins> Sample Program </ins>
 
-  ### <ins> Purpose </ins>
+### Purpose 
 This is just to try out web scraping and analyzing scraped data all using MATLAB.
 This sort of operation has some interesting and useful functions that I would like
 to remember how to use for later projects.
 
-### <ins> Goal </ins>
+### Goal
 Literally none. But if this bore any fruit, that would be interesting too.
