@@ -1,4 +1,4 @@
-## Sample Program
+# Sample Program
 
 ### Purpose
 This is just to try out web scraping and analyzing scraped data all using MATLAB.
