@@ -9,7 +9,7 @@ to remember how to use for later projects.
 Literally none. But if this bore any fruit, that would be interesting too.
 
 ### About the game:
-There are four sets of white balls, and 4 sets of red balls. One set is randomly selected before each drawing.
+There are four sets of white balls, and 4 sets of red balls. One set of each is randomly selected before each drawing.
 Within each set of white balls, you have ball numbers 1-69. Within each set of red balls, you have ball numbers 1-26.
 You select an exclusive set of 5 white ball numbers (aka no repeating numbers) and a single red ball number.
 The red ball number can be the same as a white ball number. The goal is to match what is drawn; ball order is not a factor.
