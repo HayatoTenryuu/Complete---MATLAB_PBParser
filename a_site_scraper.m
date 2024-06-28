@@ -1,5 +1,5 @@
 er = 0;
-for u = 0:35
+for u = 0:35        % This represents 36 years of Powerball data, should return errors. If not, increase year count.
     try
         name = "Powerball_Year_" + int2str(u) + ".html";
         site = "https://www.powerball.net/archive/" + int2str(u+1992);
