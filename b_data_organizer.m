@@ -1,3 +1,5 @@
+%% This file organizes the data and exports excel files.
+
 cd .\data;
 a = dir;
 datnum = length(a) - 3;
