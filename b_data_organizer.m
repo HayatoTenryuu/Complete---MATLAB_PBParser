@@ -7,7 +7,7 @@ for u = 0:datnum
     
     try 
 
-        fid = fopen("data\Powerball_Year_" + int2str(u) + ".html", "r");
+        fid = fopen("data\Powerball_Year_" + int2str(u) + ".html", "r");        % Open as read-only so you don't make the data files empty.
 
         fclose(fid);
         
