@@ -1,9 +1,28 @@
 # <ins> Sample Program </ins>
 
-### Purpose 
+### Purpose: 
 This is just to try out web scraping and analyzing scraped data all using MATLAB.
 This sort of operation has some interesting and useful functions that I would like
 to remember how to use for later projects.
 
-### Goal
+### Goal:
 Literally none. But if this bore any fruit, that would be interesting too.
+
+### About the game:
+There are four sets of white balls, and 4 sets of red balls. One set is randomly selected before each drawing.
+Within each set of white balls, you have ball numbers 1-69. Within each set of red balls, you have ball numbers 1-26.
+You select an exclusive set of 5 white ball numbers (aka no repeating numbers) and a single red ball number.
+The red ball number can be the same as a white ball number. The goal is to match what is drawn; ball order is not a factor.
+
+Based on how many balls you match with the drawing, you win different prizes. There are also multipliers for certain tiers,
+but if you can't match anything, it's a waste of money. Winnings follow these rules:
+
+1. Match ONLY the red ball (powerball):             You get $4. Multipliers up to 10x take effect.
+2. Match ONE white ball AND the red ball:           You get $4. Multipliers up to 10x take effect.
+3. Match TWO white balls AND the red ball:          You get $7. Multipliers up to 10x take effect.
+4. Match THREE white balls:                         You get $7. Multipliers up to 10x take effect.
+5. Match THREE white balls AND the red ball:        You get $100. Multipliers up to 10x take effect.
+6. Match FOUR white balls:                          You get $100. Multipliers up to 10x take effect.
+7. Match FOUR white balls AND the red ball:         You get $50,000. Multipliers up to 10x take effect.
+8. Match ALL FIVE white balls:                      You get $1,000,000. Multipliers up to 2x take effect, others default to 2x.
+9. Match ALL FIVE white balls AND the red ball:     You get the Grand Prize.
