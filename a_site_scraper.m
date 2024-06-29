@@ -7,7 +7,7 @@ for u = 0:35        % This represents 36 years of Powerball data, should return 
     try
 
         % Pull each year's data from powerball website
-        site = "https://www.powerball.net/archive/" + int2str(u+1992);
+        site = "https://www.powerball.net/archive/" + int2str(u + 1992);   % The first year of powerball was 1992 
         stroo = webread(site);
         
         % Save that year's data as an HTML file.
@@ -16,7 +16,7 @@ for u = 0:35        % This represents 36 years of Powerball data, should return 
         finder = locale(last).name;
 
         if finder ~= "data"
-            mkdir data         
+            mkdir data;         
         end
 
         nama = "Powerball_Year_" + int2str(u) + ".html";

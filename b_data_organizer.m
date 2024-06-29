@@ -31,15 +31,51 @@ for u = 0:datnum
         rb_points = strfind(contents, search_line_c);                           % Find the location/index of each red ball number
 
         % Find values of each variable and assign it to arrays
-        for v = date_points(1):length(date_points)
+        for v = 1:length(date_points)
        
-            dateArray = [dateArray, contents(v+length(search_line_a)):contents(v+length(search_line_a)+10)];
-            b1Array = [b1Array, bla];
-            b2Array = [b2Array, bla];
-            b3Array = [b3Array, bla];
-            b4Array = [b4Array, bla];
-            b5Array = [b5Array, bla];
-            rbArray = [rbArray, bla];
+            % Capture the 10-digit date (YYYY-MM-DD format)
+            dateArray = [dateArray, contents((date_points(v) + length(search_line_a)):(date_points(v) + length(search_line_a) + 9))];
+            
+            % Capture the white ball numbers (assume 2 digits long)
+            b1Array = [b1Array, contents((wb_points(v) + length(search_line_b)):(wb_points(v) + length(search_line_b) + 1))];
+            b2Array = [b2Array, contents((wb_points(v+1) + length(search_line_b)):(wb_points(v+1) + length(search_line_b) + 1))];
+            b3Array = [b3Array, contents((wb_points(v+2) + length(search_line_b)):(wb_points(v+2) + length(search_line_b) + 1))];
+            b4Array = [b4Array, contents((wb_points(v+3) + length(search_line_b)):(wb_points(v+3) + length(search_line_b) + 1))];
+            b5Array = [b5Array, contents((wb_points(v+4) + length(search_line_b)):(wb_points(v+4) + length(search_line_b) + 1))];
+            
+            % Capture the red ball numbers (assume 2 digits long)
+            rbArray = [rbArray, contents((rb_points(v) + length(search_line_c)):(rb_points(v) + length(search_line_c) + 1))];
+
+            % Test if the ball numbers are one or two digits long. If only one digit, kill the second character in the array.
+            B1 = char(b1Array(v));                  % convert the cell to a char array
+            if double(B1(2)) == 60                  % double('<') returns 60
+                b1Array(v) = cellstr(B1(1));        % convert back to a cell and reassign
+            end
+
+            B2 = char(b2Array(v));
+            if double(B2(2)) == 60
+                b2Array(v) = cellstr(B2(1));
+            end
+
+            B3 = char(b3Array(v));
+            if double(B3(2)) == 60
+                b3Array(v) = cellstr(B3(1));
+            end
+
+            B4 = char(b4Array(v));
+            if double(B4(2)) == 60
+                b4Array(v) = cellstr(B4(1));
+            end
+
+            B5 = char(b5Array(v));
+            if double(B5(2)) == 60
+                b5Array(v) = cellstr(B5(1));
+            end
+
+            RB = char(rbArray(v));
+            if double(RB(2)) == 60
+                rbArray(v) = cellstr(RB(1));
+            end
 
         end
         
@@ -51,11 +87,19 @@ for u = 0:datnum
 
     end
 
-    % Table for each file (yearly)
+    % Make table for each file's data (yearly)
     data = table(dateArray, b1Array, b2Array, b3Array, b4Array, b5Array, rbArray);
 
-    % Output to Excel File
-    filename = "Powerball " + int2str(u + 1996) + " data.xlsx";
+    % Output yearly data table to Excel File
+    locale = dir;
+    last = size(locale);
+    finder = locale(last).name;
+
+    if finder ~= "excel"
+        mkdir excel;         
+    end
+
+    filename = "excel\Powerball " + int2str(u + 1996) + " data.xlsx";
     writetable(data,filename,'Sheet',1,'Range','D4');
 
 end
