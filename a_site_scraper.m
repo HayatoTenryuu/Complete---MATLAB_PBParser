@@ -13,9 +13,16 @@ for u = 0:35        % This represents 36 years of Powerball data, should return 
         % Save that year's data as an HTML file.
         locale = dir;
         last = size(locale);
-        finder = locale(last).name;
+        aru = false;
+    
+        for q = 1:last
+            finder = locale(q).name;
+            if finder == "data"
+                aru = true;
+            end
+        end
 
-        if finder ~= "data"
+        if aru == false
             mkdir data;         
         end
 

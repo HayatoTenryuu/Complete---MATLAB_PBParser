@@ -6,17 +6,17 @@ a = dir;
 datnum = length(a) - 3;
 cd ..;
 
-% Initialize arrays
-dateArray = {};
-b1Array = {};
-b2Array = {};
-b3Array = {};
-b4Array = {};
-b5Array = {};
-rbArray = {};
-
 for u = 0:datnum
     
+    % Initialize arrays
+    dateArray = {};
+    b1Array = {};
+    b2Array = {};
+    b3Array = {};
+    b4Array = {};
+    b5Array = {};
+    rbArray = {};
+
     try 
 
         fid = fopen("data\Powerball_Year_" + int2str(u) + ".html", "r");        % Open as read-only so you don't make the data files empty
@@ -88,14 +88,30 @@ for u = 0:datnum
     end
 
     % Make table for each file's data (yearly)
-    data = table(dateArray, b1Array, b2Array, b3Array, b4Array, b5Array, rbArray);
+    dateTable = string(dateArray);
+    b1Table = string(b1Array);
+    b2Table = string(b2Array);
+    b3Table = string(b3Array);
+    b4Table = string(b4Array);
+    b5Table = string(b5Array);
+    rbTable = string(rbArray);
+    
+    % Make table with rows for each value type
+    data = table(dateTable, b1Table, b2Table, b3Table, b4Table, b5Table, rbTable);
 
     % Output yearly data table to Excel File
     locale = dir;
-    last = size(locale);
-    finder = locale(last).name;
+    last = length(locale);
+    aru = false;
+    
+    for q = 1:last
+        finder = locale(q).name;
+        if finder == "excel"
+            aru = true;
+        end
+    end
 
-    if finder ~= "excel"
+    if aru == false
         mkdir excel;         
     end
 
@@ -104,9 +120,9 @@ for u = 0:datnum
 
 end
 
-% Table for all files (overall)
-data2 = table(dateArray, b1Array, b2Array, b3Array, b4Array, b5Array, rbArray);
-
-% Output to Excel File
-filename = "Powerball total data.xlsx";
-writetable(data2, filename,'Sheet',1,'Range','D4');
+% % Table for all files (overall)
+% data2 = table(dateArray, b1Array, b2Array, b3Array, b4Array, b5Array, rbArray);
+% 
+% % Output to Excel File
+% filename = "Powerball total data.xlsx";
+% writetable(data2, filename,'Sheet',1,'Range','D4');
