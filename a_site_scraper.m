@@ -1,7 +1,12 @@
 %% This file pulls the data from the web.
 
+% Setup:
+clear
+clc
+
 er = 0;
 
+% Get the data:
 for u = 0:35        % This represents 36 years of Powerball data, should return errors. If not, increase year count.
     
     try

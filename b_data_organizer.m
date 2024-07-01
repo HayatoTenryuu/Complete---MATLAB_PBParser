@@ -1,6 +1,9 @@
 %% This file organizes the data and exports excel files.
 
 % Setup
+clear
+clc
+
 cd .\data;
 a = dir;
 datnum = length(a) - 3;
