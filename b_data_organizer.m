@@ -34,6 +34,8 @@ for u = 0:datnum
         wb_points = strfind(contents, search_line_b);                           % Find the location/index of each white ball number
         rb_points = strfind(contents, search_line_c);                           % Find the location/index of each red ball number
 
+        index = 1;                                                              % Some things need to increment differently
+
         % Find values of each variable and assign it to arrays:
         for v = 1:length(date_points)
        
@@ -41,11 +43,11 @@ for u = 0:datnum
             dateArray = [dateArray, contents((date_points(v) + length(search_line_a)):(date_points(v) + length(search_line_a) + 9))];
             
             % Capture the white ball numbers (assume 2 digits long):
-            b1Array = [b1Array, contents((wb_points(v) + length(search_line_b)):(wb_points(v) + length(search_line_b) + 1))];
-            b2Array = [b2Array, contents((wb_points(v+1) + length(search_line_b)):(wb_points(v+1) + length(search_line_b) + 1))];
-            b3Array = [b3Array, contents((wb_points(v+2) + length(search_line_b)):(wb_points(v+2) + length(search_line_b) + 1))];
-            b4Array = [b4Array, contents((wb_points(v+3) + length(search_line_b)):(wb_points(v+3) + length(search_line_b) + 1))];
-            b5Array = [b5Array, contents((wb_points(v+4) + length(search_line_b)):(wb_points(v+4) + length(search_line_b) + 1))];
+            b1Array = [b1Array, contents((wb_points(index) + length(search_line_b)):(wb_points(index) + length(search_line_b) + 1))];
+            b2Array = [b2Array, contents((wb_points(index+1) + length(search_line_b)):(wb_points(index+1) + length(search_line_b) + 1))];
+            b3Array = [b3Array, contents((wb_points(index+2) + length(search_line_b)):(wb_points(index+2) + length(search_line_b) + 1))];
+            b4Array = [b4Array, contents((wb_points(index+3) + length(search_line_b)):(wb_points(index+3) + length(search_line_b) + 1))];
+            b5Array = [b5Array, contents((wb_points(index+4) + length(search_line_b)):(wb_points(index+4) + length(search_line_b) + 1))];
             
             % Capture the red ball numbers (assume 2 digits long):
             rbArray = [rbArray, contents((rb_points(v) + length(search_line_c)):(rb_points(v) + length(search_line_c) + 1))];
@@ -81,9 +83,13 @@ for u = 0:datnum
                 rbArray(v) = cellstr(RB(1));
             end
 
+
+            index = index + 5;
+
         end
         
         fclose(fid);
+        v = 0;
         
     catch err
 
@@ -125,10 +131,13 @@ for u = 0:datnum
     end
 
     if aru == false
-        mkdir excel;         
+        mkdir excel;   
+    elseif (aru == true) && (u == 0)
+        rmdir("excel\", "s");
+        mkdir excel;
     end
 
-    filename = "excel\Powerball " + int2str(u + 1996) + " data.xlsx";
+    filename = "excel\Powerball " + int2str(u + 1992) + " data.xlsx";
     if isfile(filename)
         delete(filename);
     end
