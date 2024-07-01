@@ -101,12 +101,12 @@ for u = 0:datnum
     rbTable = string(rbArray);
     
     % Make table with rows for each value type:
-    data = table(dateTable', b1Table', b2Table', b3Table', b4Table', b5Table', rbTable', ...
+    data = table(flip(dateTable'), flip(b1Table'), flip(b2Table'), flip(b3Table'), flip(b4Table'), flip(b5Table'), flip(rbTable'), ...
         'VariableNames', ["Date:", "First ball:", "Second ball:", "Third ball:", "Fourth ball:", "Fifth ball:", "Powerball:"]);
 
     
     % Table for all files (overall)
-    newrow = [dateTable', b1Table', b2Table', b3Table', b4Table', b5Table', rbTable'];
+    newrow = [flip(dateTable'), flip(b1Table'), flip(b2Table'), flip(b3Table'), flip(b4Table'), flip(b5Table'), flip(rbTable')];
     block = extractBetween(newrow(1, 1), 1, 4);
     if str2num(block) >= 2015
         data2 = [data2; newrow];

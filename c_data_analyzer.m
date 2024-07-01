@@ -18,3 +18,5 @@ for c = 1:a
         data = [data; cell2mat(table2array(contents(c, "Date:")))];
     end
 end
+
+fclose(fid);
