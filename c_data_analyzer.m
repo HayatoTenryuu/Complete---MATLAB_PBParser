@@ -100,7 +100,7 @@ end
 
 % Frequency plot as a show of how many times each WHITE number has been pulled:
 figure(1);
-q1 = bar(x, y, FaceColor="blue", EdgeColor="black");
+bar(x, y, FaceColor="blue", EdgeColor="black");
 title("Frequency of each white number")
 xlabel("Ball Numbers")
 ylabel("Count")
@@ -108,15 +108,23 @@ ylabel("Count")
 % Odds plot as a show of how many times each WHITE number has been pulled,
 % relative to the number of WHITE balls that have been pulled.
 figure(2);
-q2 = bar(x, z, FaceColor="blue", EdgeColor="black");
+bar(x, z, FaceColor="blue", EdgeColor="black");
 title("Odds of each white number being drawn")
 xlabel("Numbers")
 ylabel("Percentage of times pulled")
 ylim([0 1])
 
+% Return the top white numbers to pick based on number of times pulled:
+bestw = [x; y];
+bestw = sortrows(bestw', 2, "descend")';
+msgbox("The top 10 white numbers you should pick are: " +  newline + ...
+    bestw(1, 1) + ", " + bestw(1, 2) + ", " + bestw(1, 3) + ", " + bestw(1, 4) + ", " + ...
+    bestw(1, 5) + ", " + bestw(1, 6) + ", " + bestw(1, 7) + ", " + bestw(1, 8) + ", " + ...
+    bestw(1, 9) + ", and " + bestw(1, 10), "Best white numbers");
+
 % Frequency plot as a show of how many times each RED number has been pulled
 figure(3);
-q3 = bar(x2, y2, FaceColor="red", EdgeColor="black");
+bar(x2, y2, FaceColor="red", EdgeColor="black");
 title("Frequency of each red number")
 xlabel("Ball Numbers")
 ylabel("Count")
@@ -124,8 +132,15 @@ ylabel("Count")
 % Odds plot as a show of how many times each RED number has been pulled, 
 % relative to the number of RED balls that have been pulled.
 figure(4);
-q4 = bar(x2, z2, FaceColor="red", EdgeColor="black");
+bar(x2, z2, FaceColor="red", EdgeColor="black");
 title("Odds of each red number being drawn")
 xlabel("Numbers")
 ylabel("Percentage of times pulled")
 ylim([0 1])
+
+% Return the top red numbers to pick based on number of times pulled:
+bestr = [x2; y2];
+bestr = sortrows(bestr', 2, "descend")';
+msgbox("The top 5 red numbers you should pick are: " + newline + ...
+    bestr(1, 1) + ", " + bestr(1, 2) + ", " + bestr(1, 3) + ", " + bestr(1, 4) + ", and " + ...
+    bestr(1, 5), "Best red numbers");
