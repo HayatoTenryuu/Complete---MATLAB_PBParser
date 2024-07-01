@@ -5,6 +5,7 @@ cd .\data;
 a = dir;
 datnum = length(a) - 3;
 cd ..;
+data2 = [];
 
 for u = 0:datnum
     
@@ -30,23 +31,23 @@ for u = 0:datnum
         wb_points = strfind(contents, search_line_b);                           % Find the location/index of each white ball number
         rb_points = strfind(contents, search_line_c);                           % Find the location/index of each red ball number
 
-        % Find values of each variable and assign it to arrays
+        % Find values of each variable and assign it to arrays:
         for v = 1:length(date_points)
        
-            % Capture the 10-digit date (YYYY-MM-DD format)
+            % Capture the 10-digit date (YYYY-MM-DD format):
             dateArray = [dateArray, contents((date_points(v) + length(search_line_a)):(date_points(v) + length(search_line_a) + 9))];
             
-            % Capture the white ball numbers (assume 2 digits long)
+            % Capture the white ball numbers (assume 2 digits long):
             b1Array = [b1Array, contents((wb_points(v) + length(search_line_b)):(wb_points(v) + length(search_line_b) + 1))];
             b2Array = [b2Array, contents((wb_points(v+1) + length(search_line_b)):(wb_points(v+1) + length(search_line_b) + 1))];
             b3Array = [b3Array, contents((wb_points(v+2) + length(search_line_b)):(wb_points(v+2) + length(search_line_b) + 1))];
             b4Array = [b4Array, contents((wb_points(v+3) + length(search_line_b)):(wb_points(v+3) + length(search_line_b) + 1))];
             b5Array = [b5Array, contents((wb_points(v+4) + length(search_line_b)):(wb_points(v+4) + length(search_line_b) + 1))];
             
-            % Capture the red ball numbers (assume 2 digits long)
+            % Capture the red ball numbers (assume 2 digits long):
             rbArray = [rbArray, contents((rb_points(v) + length(search_line_c)):(rb_points(v) + length(search_line_c) + 1))];
 
-            % Test if the ball numbers are one or two digits long. If only one digit, kill the second character in the array.
+            % Test if the ball numbers are one or two digits long. If only one digit, kill the second character in the array:
             B1 = char(b1Array(v));                  % convert the cell to a char array
             if double(B1(2)) == 60                  % double('<') returns 60
                 b1Array(v) = cellstr(B1(1));        % convert back to a cell and reassign
@@ -87,7 +88,7 @@ for u = 0:datnum
 
     end
 
-    % Make table for each file's data (yearly)
+    % Make table for each file's data (yearly):
     dateTable = string(dateArray);
     b1Table = string(b1Array);
     b2Table = string(b2Array);
@@ -96,10 +97,19 @@ for u = 0:datnum
     b5Table = string(b5Array);
     rbTable = string(rbArray);
     
-    % Make table with rows for each value type
-    data = table(dateTable, b1Table, b2Table, b3Table, b4Table, b5Table, rbTable);
+    % Make table with rows for each value type:
+    data = table(dateTable', b1Table', b2Table', b3Table', b4Table', b5Table', rbTable', ...
+        'VariableNames', ["Date:", "First ball:", "Second ball:", "Third ball:", "Fourth ball:", "Fifth ball:", "Powerball:"]);
 
-    % Output yearly data table to Excel File
+    
+    % Table for all files (overall)
+    newrow = [dateTable', b1Table', b2Table', b3Table', b4Table', b5Table', rbTable'];
+    block = extractBetween(newrow(1, 1), 1, 4);
+    if str2num(block) >= 2015
+        data2 = [data2; newrow];
+    end
+
+    % Output yearly data table to Excel File:
     locale = dir;
     last = length(locale);
     aru = false;
@@ -116,13 +126,20 @@ for u = 0:datnum
     end
 
     filename = "excel\Powerball " + int2str(u + 1996) + " data.xlsx";
+    if isfile(filename)
+        delete(filename);
+    end
     writetable(data,filename,'Sheet',1,'Range','D4');
 
 end
 
-% % Table for all files (overall)
-% data2 = table(dateArray, b1Array, b2Array, b3Array, b4Array, b5Array, rbArray);
-% 
-% % Output to Excel File
-% filename = "Powerball total data.xlsx";
-% writetable(data2, filename,'Sheet',1,'Range','D4');
+% Output total data to Excel File
+headers = ["Date:", "First ball:", "Second ball:", "Third ball:", "Fourth ball:", "Fifth ball:", "Powerball:"];
+data2 = [headers; data2];
+data2 = table(data2, 'VariableNames', " ");
+
+filename = "Powerball total data.xlsx";
+if isfile(filename)
+    delete(filename);
+end
+writetable(data2, filename,'Sheet',1,'Range','D4');
