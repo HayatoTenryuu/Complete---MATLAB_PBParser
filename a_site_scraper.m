@@ -17,7 +17,7 @@ for u = 0:35        % This represents 36 years of Powerball data, should return 
         
         % Save that year's data as an HTML file.
         locale = dir;
-        last = size(locale);
+        last = length(locale);
         aru = false;
     
         for q = 1:last
