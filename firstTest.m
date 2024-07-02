@@ -1,6 +1,6 @@
 %% This file performs the first test.
 
-function firstTest(contents) 
+function [bestw, bestr] = firstTest(contents) 
 
     %-----------------------------------------------------------------
     % First test - find the count and odds of each number, then plot:
@@ -40,19 +40,19 @@ function firstTest(contents)
         fprintf("The time remaining on white is: " + (69-b) + newline);
         
         for c = 1:goodlen
-            if str2num(data1(c)) == b
+            if str2double(data1(c)) == b
                 count = count + 1;
             end
-            if str2num(data2(c)) == b
+            if str2double(data2(c)) == b
                 count = count + 1;
             end
-            if str2num(data3(c)) == b
+            if str2double(data3(c)) == b
                 count = count + 1;
             end
-            if str2num(data4(c)) == b
+            if str2double(data4(c)) == b
                 count = count + 1;
             end
-            if str2num(data5(c)) == b
+            if str2double(data5(c)) == b
                 count = count + 1;
             end
         end
@@ -70,7 +70,7 @@ function firstTest(contents)
         fprintf("The time remaining on red is: " + (26-b) + newline);
         
         for c = 1:goodlen
-            if str2num(data6(c)) == b
+            if str2double(data6(c)) == b
                 count = count + 1;
             end
         end
@@ -95,14 +95,6 @@ function firstTest(contents)
     ylabel("Percentage of times pulled")
     ylim([0 1])
     
-    % Recommend the top white numbers to pick based on number of times pulled:
-    bestw = [x; y];
-    bestw = sortrows(bestw', 2, "descend")';
-    msgbox("The top 10 white numbers you should pick are: " +  newline + ...
-        bestw(1, 1) + ", " + bestw(1, 2) + ", " + bestw(1, 3) + ", " + bestw(1, 4) + ", " + ...
-        bestw(1, 5) + ", " + bestw(1, 6) + ", " + bestw(1, 7) + ", " + bestw(1, 8) + ", " + ...
-        bestw(1, 9) + ", and " + bestw(1, 10), "Best white numbers");
-    
     % Frequency plot as a show of how many times each RED number has been pulled
     figure(3);
     bar(x2, y2, FaceColor="red", EdgeColor="black");
@@ -119,11 +111,13 @@ function firstTest(contents)
     ylabel("Percentage of times pulled")
     ylim([0 1])
     
-    % Recommend the top red numbers to pick based on number of times pulled:
+    % Return the ordered white group and ordered red group:
+    bestw = [x; y];
+    bestw = sortrows(bestw', 2, "descend")';
+    bestw = bestw(1, :);
+
     bestr = [x2; y2];
     bestr = sortrows(bestr', 2, "descend")';
-    msgbox("The top 5 red numbers you should pick are: " + newline + ...
-        bestr(1, 1) + ", " + bestr(1, 2) + ", " + bestr(1, 3) + ", " + bestr(1, 4) + ", and " + ...
-        bestr(1, 5), "Best red numbers");
+    bestr = bestr(1, :);
 
 end

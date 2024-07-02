@@ -21,12 +21,20 @@ contents = readtable("Powerball total data.xlsx", Range = "D5:J1200", ...
     ReadVariableNames=true, VariableNamingRule="preserve");                     % Import the file's text
 fclose(fid);                                                                    % Let go of the file once the data is imported
 
-%------------------------
-% Perform the First Test
-%------------------------
+%-------------------------
+% Perform the First Test:
+%-------------------------
 
-firstTest(contents);
+[w, r] = firstTest(contents);
 
-%------------------------
-% Perform the Second Test
-%------------------------
+%-------------------------
+% Perform the Second Test:
+%-------------------------
+
+
+
+%----------------------
+% Get a Recommendation:
+%----------------------
+
+Recommendation(w, r);
