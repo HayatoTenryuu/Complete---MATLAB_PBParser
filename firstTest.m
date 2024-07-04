@@ -1,6 +1,6 @@
 %% This file performs the first test.
 
-function [bestw, bestr] = firstTest(contents) 
+function [bestw, bestr, fig] = firstTest(contents) 
 
     %-----------------------------------------------------------------
     % First test - find the count and odds of each number, then plot:
@@ -81,37 +81,48 @@ function [bestw, bestr] = firstTest(contents)
     
     % Frequency plot as a show of how many times each WHITE number has been pulled:
     figure(1);
+    subplot(2, 2, 1)
     bar(x, y, FaceColor="blue", EdgeColor="black");
     title("Frequency of each white number")
     xlabel("Ball Numbers")
     ylabel("Count")
+    set(0,'DefaultFigureVisible','off')
     
     % Odds plot as a show of how many times each WHITE number has been pulled,
     % relative to the number of WHITE balls that have been pulled.
-    figure(2);
+    figure(1);
+    subplot(2, 2, 2)
     bar(x, z, FaceColor="blue", EdgeColor="black");
     title("Odds of each white number being drawn")
     xlabel("Numbers")
     ylabel("Percentage of times pulled")
     ylim([0 1])
+    set(0,'DefaultFigureVisible','off')
     
     % Frequency plot as a show of how many times each RED number has been pulled
-    figure(3);
+    figure(1);
+    subplot(2, 2, 3)
     bar(x2, y2, FaceColor="red", EdgeColor="black");
     title("Frequency of each red number")
     xlabel("Ball Numbers")
     ylabel("Count")
+    set(0,'DefaultFigureVisible','off')
     
     % Odds plot as a show of how many times each RED number has been pulled, 
     % relative to the number of RED balls that have been pulled.
-    figure(4);
+    figure(1);
+    subplot(2, 2, 4)
     bar(x2, z2, FaceColor="red", EdgeColor="black");
     title("Odds of each red number being drawn")
     xlabel("Numbers")
     ylabel("Percentage of times pulled")
     ylim([0 1])
+    set(0,'DefaultFigureVisible','off')
+    
     
     % Return the ordered white group and ordered red group:
+    fig = figure(1);
+    
     bestw = [x; y];
     bestw = sortrows(bestw', 2, "descend")';
     bestw = bestw(1, :);

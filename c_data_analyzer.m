@@ -25,7 +25,7 @@ fclose(fid);                                                                    
 % Perform the First Test:
 %-------------------------
 
-[w, r] = firstTest(contents);
+[w, r, fig] = firstTest(contents);
 
 %-------------------------
 % Perform the Second Test:
@@ -37,4 +37,4 @@ fclose(fid);                                                                    
 % Get a Recommendation:
 %----------------------
 
-Recommendation(w, r);
+Recommendation(w, r, fig);

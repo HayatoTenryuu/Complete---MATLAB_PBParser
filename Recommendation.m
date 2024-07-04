@@ -1,6 +1,6 @@
 %% This script is used to give the user recommendations based on the tests done.
 
-function Recommendation(bestw, bestr)
+function Recommendation(bestw, bestr, fig)
 
     %-----------------
     % Recommendations:
@@ -18,7 +18,7 @@ function Recommendation(bestw, bestr)
     r5 = floor((length(unlikelyw)).*rand(1)) + 1;
 
     b1 = likelyw(r1);
-    b2 = likelyw(r2);
+    b2 = middlew(r2);
     b3 = middlew(r3);
     b4 = unlikelyw(r4);
     b5 = unlikelyw(r5);
@@ -71,5 +71,9 @@ function Recommendation(bestw, bestr)
         bestr(1, 5), "Best red numbers");
 
     msgbox("Your personal recommendation is:" + newline + ...
-        b1 + ", " + b2 + ", " + b3 + ", " + b4 + ", " + b5 + ", with powerball " + br);
+        b1 + ", " + b2 + ", " + b3 + ", " + b4 + ", " + b5 + ", with powerball " + br, "Recommended numbers");
+
+    figure(1) = fig;
+    
+
 end
