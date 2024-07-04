@@ -80,13 +80,14 @@ function [bestw, bestr, fig] = firstTest(contents)
     end
     
     % Frequency plot as a show of how many times each WHITE number has been pulled:
+    set(0,'DefaultFigureVisible','off')
     figure(1);
     subplot(2, 2, 1)
     bar(x, y, FaceColor="blue", EdgeColor="black");
     title("Frequency of each white number")
     xlabel("Ball Numbers")
     ylabel("Count")
-    set(0,'DefaultFigureVisible','off')
+    
     
     % Odds plot as a show of how many times each WHITE number has been pulled,
     % relative to the number of WHITE balls that have been pulled.
@@ -97,7 +98,6 @@ function [bestw, bestr, fig] = firstTest(contents)
     xlabel("Numbers")
     ylabel("Percentage of times pulled")
     ylim([0 1])
-    set(0,'DefaultFigureVisible','off')
     
     % Frequency plot as a show of how many times each RED number has been pulled
     figure(1);
@@ -106,7 +106,6 @@ function [bestw, bestr, fig] = firstTest(contents)
     title("Frequency of each red number")
     xlabel("Ball Numbers")
     ylabel("Count")
-    set(0,'DefaultFigureVisible','off')
     
     % Odds plot as a show of how many times each RED number has been pulled, 
     % relative to the number of RED balls that have been pulled.
@@ -117,7 +116,6 @@ function [bestw, bestr, fig] = firstTest(contents)
     xlabel("Numbers")
     ylabel("Percentage of times pulled")
     ylim([0 1])
-    set(0,'DefaultFigureVisible','off')
     
     
     % Return the ordered white group and ordered red group:
