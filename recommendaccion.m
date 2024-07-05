@@ -1,6 +1,7 @@
 %% This script is used to give the user recommendations based on the tests done.
 
-function recommendaccion(bestw, bestr, fig)
+function [b1, b2, b3, b4, b5, br, b21, b22, b23, b24, b25, br2, ...
+    fig1, fig2] = recommendaccion(bestw, bestr, fig)
 
     %-----------------
     % Recommendations:
@@ -80,11 +81,33 @@ function recommendaccion(bestw, bestr, fig)
     rr2 = floor((length(likelyr)) * rand(1));
     rr3 = floor((length(middler)) * rand(1));
     rrdecider = floor((3-1) * rand(1));
+
+    % Protect against zeros
+    if rr1 == 0
+        rr1 = 1;
+    end
+    if rr2 == 0
+        rr2 = 1;
+    end
+    if rr3 == 0
+        rr3 = 1;
+    end
     
     rr21 = floor((length(unlikelyr)) * rand(1));
     rr22 = floor((length(likelyr)) * rand(1));
     rr23 = floor((length(middler)) * rand(1));
     rrdecider2 = floor((3-1) * rand(1));
+
+    % Protect against zeros
+    if rr21 == 0
+        rr21 = 1;
+    end
+    if rr22 == 0
+        rr22 = 1;
+    end
+    if rr23 == 0
+        rr23 = 1;
+    end
 
     if rrdecider == 1
         br = bestr(rr1);
@@ -190,21 +213,21 @@ function recommendaccion(bestw, bestr, fig)
     end
 
     % Display the likely numbers
-    msgbox("The top 10 most likely white numbers are: " +  newline + ...
-        bestw(1, 1) + ", " + bestw(1, 2) + ", " + bestw(1, 3) + ", " + bestw(1, 4) + ", " + ...
-        bestw(1, 5) + ", " + bestw(1, 6) + ", " + bestw(1, 7) + ", " + bestw(1, 8) + ", " + ...
-        bestw(1, 9) + ", and " + bestw(1, 10), "Best white numbers");
-
-    msgbox("The top 5 most likely red numbers are: " + newline + ...
-        bestr(1, 1) + ", " + bestr(1, 2) + ", " + bestr(1, 3) + ", " + bestr(1, 4) + ", and " + ...
-        bestr(1, 5), "Best red numbers");
+    % msgbox("The top 10 most likely white numbers are: " +  newline + ...
+    %     bestw(1, 1) + ", " + bestw(1, 2) + ", " + bestw(1, 3) + ", " + bestw(1, 4) + ", " + ...
+    %     bestw(1, 5) + ", " + bestw(1, 6) + ", " + bestw(1, 7) + ", " + bestw(1, 8) + ", " + ...
+    %     bestw(1, 9) + ", and " + bestw(1, 10), "Best white numbers");
+    % 
+    % msgbox("The top 5 most likely red numbers are: " + newline + ...
+    %     bestr(1, 1) + ", " + bestr(1, 2) + ", " + bestr(1, 3) + ", " + bestr(1, 4) + ", and " + ...
+    %     bestr(1, 5), "Best red numbers");
 
     % Display recommendations
-    msgbox("Your personal recommendation based on a 1, 2, 2 schema is:" + newline + ...
-        b1 + ", " + b2 + ", " + b3 + ", " + b4 + ", " + b5 + ", with powerball " + br, "Recommended numbers");
-
-    msgbox("Your personal recommendation based on a 1, 1, 3 schema is:" + newline + ...
-        b21 + ", " + b22 + ", " + b23 + ", " + b24 + ", " + b25 + ", with powerball " + br2, "Recommended numbers");
+    % msgbox("Your personal recommendation based on a 1, 2, 2 schema is:" + newline + ...
+    %     b1 + ", " + b2 + ", " + b3 + ", " + b4 + ", " + b5 + ", with powerball " + br, "Recommended numbers");
+    % 
+    % msgbox("Your personal recommendation based on a 1, 1, 3 schema is:" + newline + ...
+    %     b21 + ", " + b22 + ", " + b23 + ", " + b24 + ", " + b25 + ", with powerball " + br2, "Recommended numbers");
 
     % Customize figure:
     set(0,'DefaultFigureVisible','off');
@@ -302,7 +325,9 @@ function recommendaccion(bestw, bestr, fig)
     end
 
     % Show figure:
-    fig1.Visible = "on";
-    fig2.Visible = "on";
+    % fig1.Visible = "on";
+    % fig2.Visible = "on";
+
+    return;
 
 end
