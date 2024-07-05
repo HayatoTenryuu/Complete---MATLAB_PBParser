@@ -1,6 +1,6 @@
 %% This script is used to give the user recommendations based on the tests done.
 
-function Recommendation(bestw, bestr, fig)
+function recommendaccion(bestw, bestr, fig)
 
     %-----------------
     % Recommendations:
