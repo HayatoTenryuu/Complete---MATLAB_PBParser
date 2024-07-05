@@ -21,14 +21,12 @@ classdef main < matlab.apps.AppBase
         uBestEverPowerballNumberGeneratoruLabel  matlab.ui.control.Label
     end
 
-    
     properties (Access = public)
         a = [];
         b = [];
         c = figure;
     end
     
-
     % Callbacks that handle component events
     methods (Access = private)
 
@@ -42,9 +40,15 @@ classdef main < matlab.apps.AppBase
 
         % Button pushed function: ImportHistoricalDataButton
         function ImportHistoricalDataButtonPushed(app, event)
+
+            % Loading image on:
             app.Image.Visible = "on";
             drawnow;
+
+            % Download powerball data:
             a_site_scraper;
+
+            % Done label on:
             app.Image.Visible = "off";
             app.Label_6.Text = "Done!";
             drawnow;
@@ -52,9 +56,15 @@ classdef main < matlab.apps.AppBase
 
         % Button pushed function: OrganizeDataButton
         function OrganizeDataButtonPushed(app, event)
+
+            % Loading image on:
             app.Image_2.Visible = "on";
             drawnow;
+
+            % Organize data:
             b_data_organizer;
+
+            % Done label on:
             app.Image_2.Visible = "off";
             app.Label_3.Text = "Done!";
             drawnow;
@@ -62,9 +72,15 @@ classdef main < matlab.apps.AppBase
 
         % Button pushed function: AnalyzeDataButton
         function AnalyzeDataButtonPushed(app, event)
+
+            % Loading image on:
             app.Image_3.Visible = "on";
             drawnow;
+
+            % Analyze data:
             [app.a, app.b, app.c] = c_data_analyzer();
+
+            % Done label on:
             app.Image_3.Visible = "off";
             app.Label_4.Text = "Done!";
             drawnow;
@@ -72,22 +88,36 @@ classdef main < matlab.apps.AppBase
 
         % Button pushed function: GiveMeSuggestionsButton
         function GiveMeSuggestionsButtonPushed(app, event)
+
+            % Get number of recommendations from user:
             prompt = {"I have two methods of picking lottery numbers, " + ...
                 "and I will do each for you. How many sets of lottery " + ...
                 "picks do you want?"};
             dlgtitle = "How many suggestions should I generate?";
             fieldsize = [1 65];
             answer = inputdlg(prompt,dlgtitle,fieldsize);
+            
+            % Create recommendations:
             if length(answer) > 0 && str2double(cell2mat(answer(1))) >= 1
+                
+                % Loading image on:
                 app.Image_4.Visible = "on";
                 drawnow;
+
+                % Clear previous recommendations:
+                rmdir("Your Recommendations\", "s");
+
+                % Run recommendations script as often as requested:
                 for q = 1:str2double(cell2mat(answer(1)))
                     d_make_recommendation(app.a, app.b, app.c, q);
                 end
+
+                % Done label on:
                 app.Image_4.Visible = "off";
                 app.Label_5.Text = "Done!";
                 drawnow;
     
+                % Open output:
                 winopen(".\Your Recommendations\");
             end
         end

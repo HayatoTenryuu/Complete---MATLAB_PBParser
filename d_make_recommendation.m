@@ -28,7 +28,7 @@ function d_make_recommendation(w, r, fig, num)
     end
     
     if aru == false
-        mkdir("Your Recommendations");   
+        mkdir("Your Recommendations");  
     end
     
         % Save Text
