@@ -26,3 +26,12 @@ but if you can't match anything, it's a waste of money. Winnings follow these ru
 7. Match FOUR white balls AND the red ball:         You get $50,000. Multipliers up to 10x take effect.
 8. Match ALL FIVE white balls:                      You get $1,000,000. Multipliers up to 2x take effect, others default to 2x.
 9. Match ALL FIVE white balls AND the red ball:     You get the Grand Prize.
+
+### How to use this project:
+
+1. Download all the files, obviously. Put them in a dedicated folder,
+    as this will become your working folder.
+2. Run either App.mlapp or main.m - they are both the same thing.
+3. Click the buttons in order from top to bottom, making sure they finish
+    before you click the next one. Also make sure you have internet. The first
+    step is to download some reference data.
