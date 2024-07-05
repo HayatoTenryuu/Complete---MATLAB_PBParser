@@ -16,8 +16,8 @@ data6 = [];
 %--------------------
 % Import Total data:
 %--------------------
-fid = fopen("Powerball total data.xlsx", "r");                                  % Open as read-only so you don't make the data files empty
-contents = readtable("Powerball total data.xlsx", Range = "D5:J1200", ...
+fid = fopen("excel\Powerball total data.xlsx", "r");                                  % Open as read-only so you don't make the data files empty
+contents = readtable("excel\Powerball total data.xlsx", Range = "D5:J1200", ...
     ReadVariableNames=true, VariableNamingRule="preserve");                     % Import the file's text
 fclose(fid);                                                                    % Let go of the file once the data is imported
 
@@ -25,7 +25,8 @@ fclose(fid);                                                                    
 % Perform the First Test:
 %-------------------------
 
-[w, r, fig] = firstTest(contents);
+[w, r, fig] = unoTest(contents);
+fig.Visible = "off";
 
 %-------------------------
 % Perform the Second Test:
@@ -37,4 +38,4 @@ fclose(fid);                                                                    
 % Get a Recommendation:
 %----------------------
 
-Recommendation(w, r, fig);
+recommendaccion(w, r, fig);

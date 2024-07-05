@@ -29,14 +29,12 @@ function [bestw, bestr, fig] = firstTest(contents)
     data5 = string(table2array(contents(1:goodlen, "Fifth ball:")));
     data6 = string(table2array(contents(1:goodlen, "Powerball:")));
     
-    % Give people something to look at while analysis occurs:
-    fprintf("The time remaining is:")
-    
     % White balls:
     for b = 1:69
     
         count = 0;
-        
+
+        % Give people something to look at while analysis occurs:
         fprintf("The time remaining on white is: " + (69-b) + newline);
         
         for c = 1:goodlen
@@ -58,7 +56,7 @@ function [bestw, bestr, fig] = firstTest(contents)
         end
     
         y(b) = count;
-        z(b) = y(b) / (5*length(data1));        % The denominator is how many white balls have been pulled.
+        z(b) = y(b) / length(data1);        % The denominator is how many drawings there have been
     
     end
     
@@ -80,47 +78,51 @@ function [bestw, bestr, fig] = firstTest(contents)
     end
     
     % Frequency plot as a show of how many times each WHITE number has been pulled:
-    set(0,'DefaultFigureVisible','off')
-    figure(1);
-    subplot(2, 2, 1)
-    bar(x, y, FaceColor="blue", EdgeColor="black");
-    title("Frequency of each white number")
-    xlabel("Ball Numbers")
-    ylabel("Count")
+    set(0,'DefaultFigureVisible','off');
+    set(0,'defaultAxesToolbarVisible','off');
+    fig = figure(1);
+    fig.Visible = "off";
     
+    subplot(2, 2, 1);
+    bar(x, y, FaceColor="blue", EdgeColor="black");
+    disableDefaultInteractivity(gca);
+    title("Frequency of each white number");
+    xlabel("Ball Numbers");
+    ylabel("Count");
+    fig.Visible = "off";
     
     % Odds plot as a show of how many times each WHITE number has been pulled,
     % relative to the number of WHITE balls that have been pulled.
-    figure(1);
-    subplot(2, 2, 2)
-    bar(x, z, FaceColor="blue", EdgeColor="black");
-    title("Odds of each white number being drawn")
-    xlabel("Numbers")
-    ylabel("Percentage of times pulled")
-    ylim([0 1])
-    
+    subplot(2, 2, 2);
+    bar(x, 100.*z, FaceColor="blue", EdgeColor="black");
+    disableDefaultInteractivity(gca);
+    title("Odds of each white number being drawn");
+    xlabel("Numbers");
+    ylabel("Percentage of times pulled");
+    ylim([4 10]);
+    fig.Visible = "off";
+
     % Frequency plot as a show of how many times each RED number has been pulled
-    figure(1);
-    subplot(2, 2, 3)
+    subplot(2, 2, 3);
     bar(x2, y2, FaceColor="red", EdgeColor="black");
-    title("Frequency of each red number")
-    xlabel("Ball Numbers")
-    ylabel("Count")
+    disableDefaultInteractivity(gca);
+    title("Frequency of each red number");
+    xlabel("Ball Numbers");
+    ylabel("Count");
+    fig.Visible = "off";
     
     % Odds plot as a show of how many times each RED number has been pulled, 
     % relative to the number of RED balls that have been pulled.
-    figure(1);
-    subplot(2, 2, 4)
-    bar(x2, z2, FaceColor="red", EdgeColor="black");
-    title("Odds of each red number being drawn")
-    xlabel("Numbers")
-    ylabel("Percentage of times pulled")
-    ylim([0 1])
-    
-    
+    subplot(2, 2, 4);
+    bar(x2, 100.*z2, FaceColor="red", EdgeColor="black");
+    disableDefaultInteractivity(gca);
+    title("Odds of each red number being drawn");
+    xlabel("Numbers");
+    ylabel("Percentage of times pulled");
+    ylim([0 7]);
+    fig.Visible = "off";
+        
     % Return the ordered white group and ordered red group:
-    fig = figure(1);
-    
     bestw = [x; y];
     bestw = sortrows(bestw', 2, "descend")';
     bestw = bestw(1, :);

@@ -150,7 +150,7 @@ headers = ["Date:", "First ball:", "Second ball:", "Third ball:", "Fourth ball:"
 data2 = [headers; data2];
 data2 = table(data2, 'VariableNames', " ");
 
-filename = "Powerball total data.xlsx";
+filename = "excel\Powerball total data.xlsx";
 if isfile(filename)
     delete(filename);
 end
