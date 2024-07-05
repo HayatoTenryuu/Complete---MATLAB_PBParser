@@ -80,8 +80,7 @@ function [bestw, bestr, fig] = firstTest(contents)
     % Frequency plot as a show of how many times each WHITE number has been pulled:
     set(0,'DefaultFigureVisible','off');
     set(0,'defaultAxesToolbarVisible','off');
-    fig = figure(1);
-    fig.Visible = "off";
+    fig = figure("Visible","off");
     
     subplot(2, 2, 1);
     bar(x, y, FaceColor="blue", EdgeColor="black");
@@ -89,7 +88,6 @@ function [bestw, bestr, fig] = firstTest(contents)
     title("Frequency of each white number");
     xlabel("Ball Numbers");
     ylabel("Count");
-    fig.Visible = "off";
     
     % Odds plot as a show of how many times each WHITE number has been pulled,
     % relative to the number of WHITE balls that have been pulled.
@@ -100,7 +98,6 @@ function [bestw, bestr, fig] = firstTest(contents)
     xlabel("Numbers");
     ylabel("Percentage of times pulled");
     ylim([4 10]);
-    fig.Visible = "off";
 
     % Frequency plot as a show of how many times each RED number has been pulled
     subplot(2, 2, 3);
@@ -109,7 +106,6 @@ function [bestw, bestr, fig] = firstTest(contents)
     title("Frequency of each red number");
     xlabel("Ball Numbers");
     ylabel("Count");
-    fig.Visible = "off";
     
     % Odds plot as a show of how many times each RED number has been pulled, 
     % relative to the number of RED balls that have been pulled.
@@ -120,7 +116,6 @@ function [bestw, bestr, fig] = firstTest(contents)
     xlabel("Numbers");
     ylabel("Percentage of times pulled");
     ylim([0 7]);
-    fig.Visible = "off";
         
     % Return the ordered white group and ordered red group:
     bestw = [x; y];

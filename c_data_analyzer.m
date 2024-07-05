@@ -28,7 +28,6 @@ function [w, r, fig] = c_data_analyzer()
     %-------------------------
     
     [w, r, fig] = unoTest(contents);
-    fig.Visible = "off";
     
     %-------------------------
     % Perform the Second Test:
