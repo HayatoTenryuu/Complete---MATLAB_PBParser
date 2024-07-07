@@ -11,6 +11,45 @@ function d_make_recommendation(w, r, fig, num)
 
     sortedArray1 = sort([b1, b2, b3, b4, b5]);
     sortedArray2 = sort([b21, b22, b23, b24, b25]);
+    go = true;
+
+    % Tag sets with too many (3+) sequential numbers
+    if (sortedArray1(5) - sortedArray1(1) == 5) || (sortedArray2(5) - sortedArray2(1) == 5)
+        go = false;
+    elseif (sortedArray1(4) - sortedArray1(1) == 4) || (sortedArray1(5) - sortedArray1(2) == 4) ...
+            || (sortedArray2(4) - sortedArray2(1) == 4) || (sortedArray2(5) - sortedArray1(2) == 4)
+        go = false;
+    elseif (sortedArray1(3) - sortedArray1(1) == 3) || (sortedArray1(4) - sortedArray1(2) == 3) ...
+            || (sortedArray1(5) - sortedArray1(3) == 3) || (sortedArray2(3) - sortedArray2(1) == 3) ...
+            || (sortedArray2(4) - sortedArray2(2) == 3) || (sortedArray2(5) - sortedArray1(3) == 3)
+        go = false;
+    else
+        go = true;
+    end
+
+    % Rerun if too sequential:
+    while ~go
+        [b1, b2, b3, b4, b5, br, b21, b22, b23, b24, b25, br2, ...
+        fig1, fig2] = recommendaccion(w, r, fig);
+
+        sortedArray1 = sort([b1, b2, b3, b4, b5]);
+        sortedArray2 = sort([b21, b22, b23, b24, b25]);
+        go = true;
+
+        % Tag sets with sequential numbers
+        if (sortedArray1(5) - sortedArray1(1) == 5) || (sortedArray2(5) - sortedArray2(1) == 5)
+            go = false;
+        elseif (sortedArray1(4) - sortedArray1(1) == 4) || (sortedArray1(5) - sortedArray1(2) == 4) ...
+                || (sortedArray2(4) - sortedArray2(1) == 4) || (sortedArray2(5) - sortedArray1(2) == 4)
+            go = false;
+        elseif (sortedArray1(3) - sortedArray1(1) == 3) || (sortedArray1(4) - sortedArray1(2) == 3) ...
+                || (sortedArray1(5) - sortedArray1(3) == 3) || (sortedArray2(3) - sortedArray2(1) == 3) ...
+                || (sortedArray2(4) - sortedArray2(2) == 3) || (sortedArray2(5) - sortedArray1(3) == 3)
+            go = false;
+        else
+            go = true;
+        end
+    end
 
     %-------------------------
     % Save the recommendation:
