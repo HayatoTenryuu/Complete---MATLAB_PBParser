@@ -110,7 +110,7 @@ function [b1, b2, b3, b4, b5, br, b21, b22, b23, b24, b25, br2, ...
     end
 
     if rrdecider < 0.7
-        br = unlikelyf(rr1);
+        br = unlikelyr(rr1);
     elseif (rrdecider >= 0.7) && (rrdecider <= 1.3)
         br = middler(rr2);
     else

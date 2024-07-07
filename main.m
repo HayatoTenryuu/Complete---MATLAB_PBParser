@@ -105,7 +105,16 @@ classdef main < matlab.apps.AppBase
                 drawnow;
 
                 % Clear previous recommendations:
-                rmdir("Your Recommendations\", "s");
+                locale = dir;
+                last = length(locale);
+                
+                for q = 1:last
+                    finder = locale(q).name;
+                    if finder == "Your Recommendations"
+                        rmdir("Your Recommendations\", "s");
+                    end
+                end
+                
 
                 % Run recommendations script as often as requested:
                 for q = 1:str2double(cell2mat(answer(1)))
