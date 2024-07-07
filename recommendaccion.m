@@ -74,13 +74,13 @@ function [b1, b2, b3, b4, b5, br, b21, b22, b23, b24, b25, br2, ...
 
         % Do the same for red balls:
     likelyr = bestr(1:floor(end/3));
-    middler = bestr(floor(end/3): floor(2*end/3));
-    unlikelyr = bestr(floor(2*end/3):end);
+    middler = bestr((floor(end/3) + 1): floor(2*end/3));
+    unlikelyr = bestr((floor(2*end/3) + 1):end);
 
     rr1 = floor((length(unlikelyr)) * rand(1));
     rr2 = floor((length(likelyr)) * rand(1));
     rr3 = floor((length(middler)) * rand(1));
-    rrdecider = floor((3-1) * rand(1));
+    rrdecider = (2) * rand(1);
 
     % Protect against zeros
     if rr1 == 0
@@ -96,7 +96,7 @@ function [b1, b2, b3, b4, b5, br, b21, b22, b23, b24, b25, br2, ...
     rr21 = floor((length(unlikelyr)) * rand(1));
     rr22 = floor((length(likelyr)) * rand(1));
     rr23 = floor((length(middler)) * rand(1));
-    rrdecider2 = floor((3-1) * rand(1));
+    rrdecider2 = (2) * rand(1);
 
     % Protect against zeros
     if rr21 == 0
@@ -109,20 +109,20 @@ function [b1, b2, b3, b4, b5, br, b21, b22, b23, b24, b25, br2, ...
         rr23 = 1;
     end
 
-    if rrdecider == 1
-        br = bestr(rr1);
-    elseif rrdecider == 2
-        br = bestr(rr2);
+    if rrdecider < 0.7
+        br = unlikelyf(rr1);
+    elseif (rrdecider >= 0.7) && (rrdecider <= 1.3)
+        br = middler(rr2);
     else
-        br = bestr(rr3);
+        br = likelyr(rr3);
     end
 
-    if rrdecider2 == 1
-        br2 = bestr(rr21);
-    elseif rrdecider2 == 2
-        br2 = bestr(rr22);
+    if rrdecider2 < 0.7
+        br2 = unlikelyr(rr21);
+    elseif (rrdecider2 >= 0.7) && (rrdecider2 <= 1.3)
+        br2 = middler(rr22);
     else
-        br2 = bestr(rr23);
+        br2 = likelyr(rr23);
     end
 
     % Stopgap for equivalence of two white balls if that issue arises:
