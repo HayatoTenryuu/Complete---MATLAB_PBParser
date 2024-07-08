@@ -116,7 +116,7 @@ function b_data_organizer()
         % Table for all files (overall)
         newrow = [flip(dateTable'), flip(b1Table'), flip(b2Table'), flip(b3Table'), flip(b4Table'), flip(b5Table'), flip(rbTable')];
         block = extractBetween(newrow(1, 1), 1, 4);
-        if str2num(block) >= 2015
+        if str2num(block) > 2015
             data2 = [data2; newrow];
         end
     
