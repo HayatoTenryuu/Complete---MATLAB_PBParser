@@ -19,9 +19,9 @@ function [w, r, fig] = c_data_analyzer()
     % Import Total data:
     %--------------------
     fid = fopen("excel\Powerball total data.xlsx", "r");                                  % Open as read-only so you don't make the data files empty
-    contents = readtable("excel\Powerball total data.xlsx", Range = "D5:J1200", ...
-        ReadVariableNames=true, VariableNamingRule="preserve");                     % Import the file's text
-    fclose(fid);                                                                    % Let go of the file once the data is imported
+    contents = readtable("excel\Powerball total data.xlsx", Range = "D5:J1500", ...
+        ReadVariableNames=true, VariableNamingRule="preserve");                           % Import the file's text
+    fclose(fid);                                                                          % Let go of the file once the data is imported
     
     %-------------------------
     % Perform the First Test:
