@@ -97,7 +97,7 @@ function [bestw, bestr, fig] = firstTest(contents)
     title("Odds of each white number being drawn");
     xlabel("Numbers");
     ylabel("Percentage of times pulled");
-    ylim([4 10]);
+    ylim([4 12]);
 
     % Frequency plot as a show of how many times each RED number has been pulled
     subplot(2, 2, 3);
