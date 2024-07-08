@@ -1,6 +1,6 @@
 %% This file pulls the data from the web.
 
-function a_site_scraper();
+function a_site_scraper()
 
     % Setup:
     clear
