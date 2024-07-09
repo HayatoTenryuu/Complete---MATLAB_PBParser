@@ -61,10 +61,12 @@ function [w, r, fig] = c_data_analyzer()
         delete(filename);
     end
 
+    writematrix("White Ball:", filename, Sheet = 1, Range = "C4");
     writematrix(w(1:23)', filename, Sheet = 1, Range = "D5");
     writematrix(w(24:46)', filename, Sheet = 1, Range = "F5");
     writematrix(w(47:69)', filename, Sheet = 1, Range = "H5");
 
+    writematrix("Red Ball:", filename, Sheet = 1, Range = "C29");
     writematrix(r(1:8)', filename, Sheet = 1, Range = "D30");
     writematrix(r(9:17)', filename, Sheet = 1, Range = "F30");
     writematrix(r(18:26)', filename, Sheet = 1, Range = "H30");
