@@ -1,6 +1,6 @@
 %% Application entry point if using code.
 
-classdef main < matlab.apps.AppBase
+classdef App < matlab.apps.AppBase
 
     % Properties that correspond to app components
     properties (Access = public)
@@ -246,7 +246,7 @@ classdef main < matlab.apps.AppBase
     methods (Access = public)
 
         % Construct app
-        function app = main
+        function app = App
 
             % Create UIFigure and components
             createComponents(app)

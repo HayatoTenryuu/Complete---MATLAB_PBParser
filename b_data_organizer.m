@@ -5,10 +5,13 @@ function b_data_organizer()
     % Setup
     clear
     clc
+
+    if(length(pwd) == regexp(pwd, 'Projects') + length('Projects') - 1)
+        cd 'PB Parser';
+    end
     
-    cd .\data;
-    a = dir;
-    datnum = length(a) - 3;
+    cd data;
+    datnum = length(dir) - 3;
     cd ..;
     data2 = [];
     
