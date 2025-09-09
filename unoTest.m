@@ -78,8 +78,6 @@ function [bestw, bestr, fig] = firstTest(contents)
     end
     
     % Frequency plot as a show of how many times each WHITE number has been pulled:
-    set(0,'DefaultFigureVisible','off');
-    set(0,'defaultAxesToolbarVisible','off');
     fig = figure("Visible","off");
     
     subplot(2, 2, 1);

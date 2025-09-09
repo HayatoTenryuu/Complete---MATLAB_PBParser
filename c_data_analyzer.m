@@ -106,6 +106,7 @@ function [w, r, fig] = c_data_analyzer()
     end
     
     % Save Image
+    fig.Visible = "on";
     filename = "figure\Powerball figure data.png";
     if isfile(filename)
         delete(filename);

@@ -24,7 +24,7 @@ classdef App < matlab.apps.AppBase
     properties (Access = public)
         a = [];
         b = [];
-        c = figure;
+        c = figure("Visible","off");
     end
     
     % Callbacks that handle component events
